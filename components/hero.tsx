@@ -1,55 +1,61 @@
 "use client"
 
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Mail } from "lucide-react"
 
 interface HeroProps {
-  setActiveSection: (section: string) => void
+  onExplore: () => void
+  onContact: () => void
 }
 
-export default function Hero({ setActiveSection }: HeroProps) {
+export default function Hero({ onExplore, onContact }: HeroProps) {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5 -z-10"></div>
+    <section className="min-h-screen flex items-center justify-center pt-20 pb-20 px-6 bg-gradient-to-br from-background via-accent/5 to-background">
+      {/* Animated background pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      </div>
 
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <div className="space-y-4">
-            <p className="text-sm tracking-widest text-primary uppercase">AI & ML Student</p>
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">Visaka Sriram</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Building intelligent systems for the betterment of society.
-            </p>
-          </div>
-
-          <p className="text-base text-muted-foreground leading-relaxed max-w-md">
-            Passionate about creating meaningful AI solutions that positively impact the world. Currently exploring
-            ethical AI and machine learning research at VIT Chennai.
-          </p>
-
-          <div className="flex gap-4 pt-4">
-            <a
-              href="#projects"
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium flex items-center gap-2"
-            >
-              Explore My Work
-              <ArrowRight size={18} />
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors font-medium"
-            >
-              Contact Me
-            </a>
-          </div>
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
+        <div className="mb-6 inline-block">
+          <span className="inline-block px-4 py-2 bg-accent rounded-full text-sm font-medium text-accent-foreground">
+            AI & ML Student • Researcher • Innovator
+          </span>
         </div>
 
-        {/* Decorative shape - AI inspired */}
-        <div className="hidden md:flex items-center justify-center h-96 relative">
-          <div className="absolute w-64 h-64 bg-gradient-to-br from-primary via-accent to-primary rounded-3xl opacity-20 blur-3xl animate-pulse"></div>
-          <div className="relative w-48 h-48 border-2 border-primary/30 rounded-3xl flex items-center justify-center">
-            <div className="w-32 h-32 border border-primary/20 rounded-2xl flex items-center justify-center">
-              <div className="w-16 h-16 border border-primary/10 rounded-xl"></div>
+        <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground mb-6 leading-tight">
+          Building Intelligent Systems for <span className="text-primary">Social Good</span>
+        </h1>
+
+        <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          I'm an AI and Machine Learning student at VIT Chennai, passionate about creating meaningful solutions that
+          positively impact society through intelligent technology.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <button
+            onClick={onExplore}
+            className="group px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all hover:shadow-lg hover:scale-105"
+          >
+            Explore My Work
+            <ArrowRight className="inline ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <button
+            onClick={onContact}
+            className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium transition-all hover:shadow-lg border border-primary/20"
+          >
+            Contact Me
+            <Mail className="inline ml-2 w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Profile Image Placeholder */}
+        <div className="mt-16 flex justify-center">
+          <div className="relative w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20">
+            <div className="w-full h-full bg-gradient-to-br from-accent to-primary/20 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-32 h-40 bg-muted rounded-xl" />
+              </div>
             </div>
           </div>
         </div>

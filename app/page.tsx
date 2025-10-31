@@ -8,21 +8,39 @@ import Skills from "@/components/skills"
 import Experience from "@/components/experience"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
-import Footer from "@/components/footer"
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home")
 
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
-    <main className="bg-background">
-      <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
-      <Hero setActiveSection={setActiveSection} />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Contact />
-      <Footer />
+    <main className="overflow-x-hidden">
+      <Navigation onNavigate={scrollToSection} activeSection={activeSection} />
+      <div id="home">
+        <Hero onExplore={() => scrollToSection("projects")} onContact={() => scrollToSection("contact")} />
+      </div>
+      <div id="about">
+        <About />
+      </div>
+      <div id="skills">
+        <Skills />
+      </div>
+      <div id="experience">
+        <Experience />
+      </div>
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
     </main>
   )
 }
